@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Ummi 🎂</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,400;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --primary-pink: #d63384;
+    --envelope-col: #ff9a9e;
+    --envelope-dark: #e88085;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --text-main: #4a4a4a;
+    --text-accent: #a64d79;
+    --gold-gradient: linear-gradient(to right, #a64d79 0%, #ffd700 50%, #a64d79 100%);
+    --shadow: 0 10px 40px 0 rgba(31, 38, 135, 0.15);
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: radial-gradient(circle at 50% 0%, #ffe3ec, #fff0f3, #e3f2fd);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding-bottom: 80px;
+    overflow-x: hidden;
+  }
+
+  /* --- 1. Bulletproof Intro --- */
+  #intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff0f3;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeOutIntro 1s forwards 3s; /* Waits 3s, then disappears */
+    pointer-events: auto;
+  }
+
+  @keyframes fadeOutIntro {
+    to { opacity: 0; visibility: hidden; pointer-events: none; }
+  }
+
+  .intro-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    background: var(--gold-gradient);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* --- 2. Animations (Time-Based Cascade) --- */
+  /* This guarantees content loads. It doesn't wait for Javascript. */
+  .fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Delays to create the "Premium" feel */
+  .delay-1 { animation-delay: 3.2s; } /* Appears after intro */
+  .delay-2 { animation-delay: 3.5s; }
+  .delay-3 { animation-delay: 3.8s; }
+  .delay-4 { animation-delay: 4.1s; }
+  .delay-5 { animation-delay: 4.4s; }
+  .delay-6 { animation-delay: 4.7s; }
+
+  /* --- 3. Gold Text & Header --- */
+  .page-header { margin-top: 50px; text-align: center; z-index: 10; }
+  .page-header h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    margin: 0;
+    color: var(--primary-pink);
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+  }
+  .gold-text {
+    background: var(--gold-gradient);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
+  }
+  @keyframes shine { to { background-position: 200% center; } }
+
+  /* --- 4. Cards --- */
+  .card {
+    width: 85%;
+    max-width: 600px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    padding: 40px 30px;
+    margin: 25px 0;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+  }
+  .poem-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-accent);
+  }
+  .signature {
+    margin-top: 25px; text-align: right;
+    font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.9rem;
+    color: var(--primary-pink); border-top: 1px solid rgba(166, 77, 121, 0.2);
+    padding-top: 10px; display: inline-block; width: 100%;
+  }
+
+  /* --- 5. Envelopes --- */
+  .horizontal-scroll-container {
+    display: flex; overflow-x: auto; gap: 30px;
+    padding: 20px 10px 140px 10px; 
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; align-items: flex-end;
+  }
+  .envelope-wrapper {
+    position: relative; min-width: 280px; height: 180px;
+    scroll-snap-align: center; perspective: 1000px;
+    cursor: pointer; margin-top: 50px;
+  }
+  .envelope {
+    position: absolute; bottom: 0; width: 100%; height: 100%;
+    background: var(--envelope-col); border-radius: 0 0 10px 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 2;
+  }
+  .lid {
+    position: absolute; top: 0; left: 0; width: 100%; height: 50%;
+    background: var(--envelope-dark);
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    transform-origin: top; transition: transform 0.6s ease; z-index: 4;
+  }
+  .pocket {
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--envelope-col), #ffb3c6);
+    clip-path: polygon(0 0, 50% 40%, 100% 0, 100% 100%, 0 100%);
+    z-index: 3; border-radius: 0 0 10px 10px;
+  }
+  .letter {
+    position: absolute; bottom: 0; left: 10%; width: 80%; height: 90%;
+    background: white; border-radius: 5px; padding: 15px;
+    box-sizing: border-box; transition: all 0.6s ease;
+    z-index: 1; box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    display: flex; flex-direction: column; justify-content: center;
+    font-size: 0.85rem; font-family: 'Playfair Display', serif; color: #555;
+    line-height: 1.4; text-align: center;
+  }
+  .tag-label {
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: white; padding: 5px 15px; border-radius: 20px;
+    font-size: 0.7rem; font-weight: 700; color: var(--text-accent);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 5; white-space: nowrap;
+  }
+  .envelope-wrapper.open .lid { transform: rotateX(180deg); z-index: 0; }
+  .envelope-wrapper.open .letter { transform: translateY(-130px); z-index: 6; height: 140px; }
+
+  /* --- 6. Abstract Visuals --- */
+  .visuals-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px; }
+  .art-card {
+    background: white; padding: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    width: 130px; height: 160px; border-radius: 12px;
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+    transition: transform 0.3s ease;
+  }
+  .art-card:hover { transform: translateY(-5px); }
+  .art-icon-box { width: 100%; height: 100px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+  .art-joy { background: linear-gradient(135deg, #fff0f3, #ffe3ec); color: #ff6f91; }
+  .art-grace { background: linear-gradient(135deg, #e3f2fd, #f3e5f5); color: #9c27b0; }
+  .art-growth { background: linear-gradient(135deg, #e8f5e9, #f1f8e9); color: #66bb6a; }
+  .art-caption { font-family: 'Great Vibes', cursive; font-size: 1.4rem; color: #555; }
+
+  /* --- 7. Cake --- */
+  .cake-stage {
+    position: relative; width: 200px; height: 200px; margin: 0 auto 20px;
+    cursor: pointer; transition: transform 0.1s ease;
+  }
+  .cake-stage:active { transform: scale(0.97); }
+  .cake-layer {
+    position: absolute; width: 160px; height: 50px; border-radius: 50%; left: 20px;
+    box-shadow: inset -10px -5px 15px rgba(0,0,0,0.1), inset 5px 5px 15px rgba(255,255,255,0.6), 0 5px 10px rgba(0,0,0,0.15);
+    opacity: 0;
+  }
+  .layer-bottom { top: 100px; background: linear-gradient(to right, #ff9a9e, #fecfef, #ff9a9e); z-index: 1; }
+  .layer-middle { top: 70px; background: linear-gradient(to right, #ff758c, #ff7eb3, #ff758c); z-index: 2; width: 140px; left: 30px; }
+  .layer-top    { top: 40px; background: linear-gradient(to right, #ffdde1, #ee9ca7, #ffdde1); z-index: 3; width: 120px; left: 40px; }
+
+  @keyframes dropIn {
+    0% { transform: translateY(-300px); opacity: 0; }
+    60% { transform: translateY(10px); opacity: 1; }
+    80% { transform: translateY(-5px); }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  .animate-cake .layer-bottom { animation: dropIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.2s; }
+  .animate-cake .layer-middle { animation: dropIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.4s; }
+  .animate-cake .layer-top    { animation: dropIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.6s; }
+  .animate-cake .candle       { animation: dropIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.8s; }
+  .animate-cake .flame        { animation: dropIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.9s; opacity: 1; }
+
+  .candle {
+    position: absolute; width: 12px; height: 40px;
+    background: repeating-linear-gradient(45deg, #fff, #fff 4px, #ff9a9e 4px, #ff9a9e 8px);
+    top: 5px; left: 94px; z-index: 4; border-radius: 4px; opacity: 0;
+  }
+  .flame {
+    position: absolute; width: 16px; height: 16px;
+    background: radial-gradient(circle, #ffd700, #ff8c00);
+    border-radius: 50% 50% 20% 20%; top: -10px; left: 92px; z-index: 5;
+    box-shadow: 0 0 15px #ffd700; opacity: 0; animation: flicker 1s infinite alternate 1.8s;
+  }
+  @keyframes flicker { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.1); opacity: 0.8; } }
+
+  .secret-reveal {
+    opacity: 0; max-height: 0; overflow: hidden; transition: all 1s ease;
+    text-align: left; background: rgba(255,255,255,0.6); padding: 0 20px;
+    border-radius: 12px; border-left: 4px solid var(--primary-pink);
+    font-family: 'Playfair Display', serif; font-size: 1.1rem; line-height: 1.6;
+    color: #555; margin-top: 10px;
+  }
+  .secret-reveal.visible { opacity: 1; max-height: 500px; padding: 20px; margin-top: 20px; }
+
+  .perfume-bottle-container { cursor: pointer; transition: transform 0.4s; }
+  .perfume-bottle-container:hover { transform: translateY(-8px); }
+  .bottle-shape {
+    width: 60px; height: 80px; background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255, 227, 236, 0.9));
+    border: 1px solid rgba(255,255,255,0.8); border-radius: 12px 12px 4px 4px;
+    margin: 0 auto; box-shadow: 0 10px 20px rgba(214, 51, 132, 0.2);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .liquid { width: 48px; height: 60px; background: #ffc2d1; border-radius: 8px; opacity: 0.7; }
+  .cap-shape { width: 30px; height: 15px; background: linear-gradient(to right, #d4a5a5, #ecd3d3); margin: 0 auto 2px; border-radius: 4px; }
+  .brand-msg { margin-top: 20px; font-size: 0.95rem; color: var(--text-main); line-height: 1.6; opacity: 0; transition: opacity 0.5s ease; }
+  .brand-msg.visible { opacity: 1; }
+
+  .music-control {
+    position: fixed; bottom: 20px; right: 20px;
+    background: rgba(255, 255, 255, 0.85); padding: 10px 18px; border-radius: 50px;
+    cursor: pointer; font-size: 0.8rem; font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s ease; z-index: 1000;
+    backdrop-filter: blur(5px); display: flex; align-items: center; gap: 8px; color: var(--text-accent);
+  }
+  footer { font-size: 0.7rem; color: #888; margin-top: auto; letter-spacing: 0.5px; opacity: 0.6; }
+  #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 800; }
+</style>
+</head>
+<body>
+
+  <div id="intro-overlay">
+    <div class="intro-text">For a special soul...</div>
+  </div>
+  <canvas id="confetti-canvas"></canvas>
+
+  <header class="page-header fade-in-up delay-1">
+    <h1>Happy Birthday <span class="gold-text">Ummi</span></h1>
+  </header>
+
+  <div class="card fade-in-up delay-2">
+    <div class="poem-text">
+      Winter whispers,<br>
+      Her call to a Hazel,<br>
+      A witch hazel,<br>
+      Risen with warmth,<br>
+      Resilient as frost,<br>
+      A pure abode,<br>
+      A symbol of goodness,<br>
+      The mother of virtue —<br>
+      As she's called.<br><br>
+      I choose to celebrate<br>
+      Her existence,<br>
+      In poetry and rejoice,<br>
+      As she's completed another chapter.
+    </div>
+    <div class="signature">By M.Ayuba</div>
+  </div>
+
+  <div class="card fade-in-up delay-3" style="padding: 10px; width: 95%;">
+    <h2 style="font-family: 'Playfair Display', serif; color: var(--text-accent); margin-bottom: 5px;">Open When...</h2>
+    <div class="horizontal-scroll-container">
+      
+      <div class="envelope-wrapper" onclick="toggleEnvelope(this)">
+        <div class="envelope"><div class="tag-label">ENCOURAGEMENT</div><div class="lid"></div><div class="pocket"></div><div class="letter">"You have navigated storms before and built castles from the debris. Your resilience isn't just a trait; it's your superpower. Keep going."</div></div>
+      </div>
+      <div class="envelope-wrapper" onclick="toggleEnvelope(this)">
+        <div class="envelope"><div class="tag-label">SOFTNESS</div><div class="lid"></div><div class="pocket"></div><div class="letter">"Rest is not a weakness. Put down the weight of the world for a moment. You deserve the same peace you so freely give to others."</div></div>
+      </div>
+      <div class="envelope-wrapper" onclick="toggleEnvelope(this)">
+        <div class="envelope"><div class="tag-label">BAD DAY</div><div class="lid"></div><div class="pocket"></div><div class="letter">"Breathe. This moment is just a page, not the whole book. Tomorrow is fresh, untouched, and waiting for your light."</div></div>
+      </div>
+    </div>
+    <div style="font-size: 10px; color: #aaa; margin-top: -10px; padding-bottom: 20px;">(Tap envelope to open • Swipe for more)</div>
+  </div>
+
+  <div class="card fade-in-up delay-4">
+    <h2 style="font-family: 'Playfair Display', serif; color: var(--text-accent);">Essence of You</h2>
+    <div class="visuals-grid">
+      <div class="art-card"><div class="art-icon-box art-joy">✨</div><div class="art-caption">Joy</div></div>
+      <div class="art-card"><div class="art-icon-box art-grace">🌸</div><div class="art-caption">Grace</div></div>
+      <div class="art-card"><div class="art-icon-box art-growth">🌿</div><div class="art-caption">Growth</div></div>
+    </div>
+  </div>
+
+  <div class="card fade-in-up delay-5">
+    <div class="cake-stage" id="cakeStage" onclick="handleCakeClick()">
+      <div class="flame"></div><div class="candle"></div><div class="cake-layer layer-top"></div><div class="cake-layer layer-middle"></div><div class="cake-layer layer-bottom"></div>
+    </div>
+    <div class="main-message" id="cakeMessage" style="color: #a64d79; font-weight: 600; margin-top: 10px;">Happy Birthday Ummi, Here's to another successful and joyous year for you</div>
+    <div style="font-size: 0.75rem; color: #999;" id="hintText">(Tap 10 times)</div>
+
+  <div class="card fade-in-up delay-6">
+    <h2 style="font-family: 'Playfair Display', serif; color: var(--text-accent); font-size: 1.1rem;">Perfume by Ummi's Wish</h2>
+    <div class="perfume-bottle-container" onclick="revealBrandMessage()">
+      <div class="cap-shape"></div><div class="bottle-shape"><div class="liquid"></div></div><div style="font-size: 10px; margin-top: 8px; letter-spacing: 1px; color: #a64d79;">EAU DE PARFUM</div>
+    </div>
+    <div id="brandMessage" class="brand-msg"></div>
+  </div>
+
+  <footer>Made by <strong>Naratech</strong></footer>
+
+  <div class="music-control" onclick="toggleMusic()"><span id="music-icon">🎵</span> Play Music</div>
+  <audio id="bg-music" loop><source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg"></audio>
+
+<script>
+  // Confetti starts after intro
+  setTimeout(() => { createConfetti(); drawConfetti(); }, 3500);
+
+  // Trigger cake animation manually after delay (since we removed scroll observer)
+  setTimeout(() => {
+    document.getElementById('cakeStage').classList.add('animate-cake');
+  }, 4400);
+
+  function toggleEnvelope(element) { element.classList.toggle('open'); }
+
+  let clickCount = 0; let isLocked = false;
+  const cakeMessage = document.getElementById("cakeMessage");
+  const hintText = document.getElementById("hintText");
+  const secretContainer = document.getElementById("secretContainer");
+
+  function handleCakeClick() {
+    if (isLocked) return;
+    clickCount++;
+    const cake = document.getElementById('cakeStage');
+    cake.style.transform = "scale(0.95)";
+    setTimeout(() => cake.style.transform = "scale(1)", 100);
+
+    if (clickCount === 3) cakeMessage.textContent = "You sure you wanna know?";
+    else if (clickCount === 5) cakeMessage.textContent = "You can still stop...";
+    else if (clickCount === 9) cakeMessage.textContent = "Are you ready?";
+    else if (clickCount === 10) {
+      cakeMessage.textContent = "You're doing great, keep pushing through and never give up, and if it's ever too heavy to carry you know who to lean on.";
+      hintText.style.display = 'none';
+    } else if (clickCount >= 11) {
+      isLocked = true;
+      cakeMessage.textContent = "Open your heart.";
+      secretContainer.classList.add("visible");
+      for(let i=0; i<3; i++) setTimeout(createConfetti, i*300);
+    }
+  }
+
+  function revealBrandMessage() {
+    const msg = document.getElementById("brandMessage");
+    msg.innerHTML = `Happy Birthday to <strong>Perfume by Ummi</strong> 🌸<br><br>More wins, more reach, more customers who believe in the craft.<br>Here’s to resilience, growth, and a brand that keeps showing up.`;
+    msg.classList.add("visible");
+  }
+
+  // Confetti
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  let confettiPieces = [];
+  const colors = ['#d63384', '#ff9a9e', '#ffd700', '#ffffff', '#a64d79'];
+  function createConfetti() {
+    for (let i = 0; i < 60; i++) confettiPieces.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height-canvas.height, color: colors[Math.floor(Math.random()*colors.length)], size: Math.random()*5+3, speed: Math.random()*4+2, angle: Math.random()*6.2});
+  }
+  function drawConfetti() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    confettiPieces.forEach((p, i) => {
+      ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, 2*Math.PI); ctx.fill();
+      p.y += p.speed; p.x += Math.sin(p.angle)*2;
+      if (p.y > canvas.height) confettiPieces[i].y = -10;
+    });
+    requestAnimationFrame(drawConfetti);
+  }
+  setTimeout(() => { canvas.style.transition = 'opacity 2s ease'; canvas.style.opacity = '0'; }, 5000);
+
+  const audio = document.getElementById('bg-music');
+  let isPlaying = false;
+  function toggleMusic() {
+    if (isPlaying) { audio.pause(); } else { audio.play(); }
+    isPlaying = !isPlaying;
+  }
+</script>
+</body>
+</html>
